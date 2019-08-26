@@ -10,6 +10,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  // ADD IN LATER
+  // ///////////////
+  // image: {
+  //   type: String,
+  //   required: false
+  // },
   token: String
 }, {
   timestamps: true,

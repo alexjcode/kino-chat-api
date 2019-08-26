@@ -1,7 +1,7 @@
 # Created by https://www.gitignore.io/api/macos,linux
 
-./test/
-./curl-scripts/
+test
+curl-scripts
 
 ### macOS ###
 *.DS_Store

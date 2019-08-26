@@ -1,7 +1,7 @@
 'use strict'
 
 // creating a base name for the mongodb
-const mongooseBaseName = 'capstone-api'
+const mongooseBaseName = 'kino-chat-api'
 
 // create the mongodb uri for development and test
 const database = {
