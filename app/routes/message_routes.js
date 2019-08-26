@@ -11,7 +11,7 @@ const router = express.Router()
 
 // INDEX
 // GET /messages
-router.get('/messages', requireToken, (req, res, next) => {
+router.get('/messages', (req, res, next) => {
   Message.find()
     .then(messages => {
       // `messages` will be an array of Mongoose documents
