@@ -66,8 +66,18 @@ app.use(messageRoutes)
 // passed any error messages from them
 app.use(errorHandler)
 
+const http = require('http').createServer(app)
+const io = require('socket.io')(http)
+
+io.on('connection', function (socket) {
+  console.log('backend user connected')
+  socket.on('disconnect', function () {
+    console.log('backend user disconnected')
+  })
+})
+
 // run API on designated port (4741 in this case)
-app.listen(port, () => {
+http.listen(port, () => {
   console.log('listening on port ' + port)
 })
 
