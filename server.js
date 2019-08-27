@@ -69,10 +69,18 @@ app.use(errorHandler)
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
+// console log connections
 io.on('connection', function (socket) {
   console.log('backend user connected')
   socket.on('disconnect', function () {
     console.log('backend user disconnected')
+  })
+})
+
+// console log messages
+io.on('connection', function (socket) {
+  socket.on('chat message', function (msg) {
+    console.log('message: ' + msg)
   })
 })
 
