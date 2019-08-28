@@ -69,25 +69,41 @@ app.use(errorHandler)
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-// console log connections
+// sending files????
+app.get('/', function (req, res) {
+  res.sendFile(`${__dirname}/index.html`)
+})
+
+// connections
 io.on('connection', function (socket) {
-  console.log('backend user connected')
-  socket.on('disconnect', function () {
-    console.log('backend user disconnected')
+  // console.log('backend user connected')
+  // console log disconnects
+
+  // console log messages
+  socket.on('new message', function (msg) {
+    console.log('// chat // ' + msg)
+    io.emit('new message', msg)
+  })
+  socket.on('sign in', function (x) {
+    console.log('// auth // ' + x)
+    io.emit('sign in', x)
+  })
+  socket.on('sign out', function (x) {
+    console.log('// auth // ' + x)
+    io.emit('sign out', x)
   })
 })
 
-// console log messages
-io.on('connection', function (socket) {
-  socket.on('chat message', function (msg) {
-    console.log('message: ' + msg)
-  })
-})
+// socket.on('disconnect', function () {
+//   console.log('backend user disconnected')
+// })
 
 // run API on designated port (4741 in this case)
 http.listen(port, () => {
   console.log('listening on port ' + port)
 })
+
+io.emit('some event', { for: 'everyone' })
 
 // needed for testing
 module.exports = app
