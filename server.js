@@ -81,8 +81,8 @@ io.on('connection', function (socket) {
 
   // console log messages
   socket.on('new message', function (msg) {
-    console.log('// chat // ' + msg)
-    io.emit('new message', msg)
+    console.log('// chat // ' + msg.log)
+    io.emit('new message sent', msg)
   })
   socket.on('sign in', function (x) {
     console.log('// auth // ' + x)
