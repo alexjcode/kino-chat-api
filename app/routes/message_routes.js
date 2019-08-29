@@ -27,7 +27,7 @@ router.get('/messages', (req, res, next) => {
 
 // SHOW
 // GET /messages/5a7db6c74d55bc51bdf39793
-router.get('/messages/:id', requireToken, (req, res, next) => {
+router.get('/messages/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Message.findById(req.params.id)
     .then(handle404)
