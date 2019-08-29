@@ -69,11 +69,6 @@ app.use(errorHandler)
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-// sending files????
-app.get('/', function (req, res) {
-  res.sendFile(`${__dirname}/index.html`)
-})
-
 // connections
 io.on('connection', function (socket) {
   // console.log('backend user connected')
@@ -85,8 +80,12 @@ io.on('connection', function (socket) {
     io.emit('new message sent', msg)
   })
   socket.on('updated message', function (msg) {
-    console.log('// chat // ' + msg.log + ' (edited)')
+    console.log('// chat // ' + msg.log)
     io.emit('message update sent', msg)
+  })
+  socket.on('deleted message', function (msg) {
+    console.log('// chat // ' + msg.log)
+    io.emit('message delete sent', msg)
   })
   socket.on('sign in', function (x) {
     console.log('// auth // ' + x)
